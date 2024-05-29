@@ -4,7 +4,7 @@ import { getCoursesByStudentId, getStudentById, getStudents } from './studentSer
 const router = Router();
 
 router.get('/',getStudents);
+router.get('/courses/:id',getCoursesByStudentId);
 router.get('/:id',getStudentById);
-router.get('/:id/courses',getCoursesByStudentId);
 
 export default router;

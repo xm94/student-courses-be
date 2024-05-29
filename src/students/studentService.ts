@@ -35,12 +35,16 @@ export const getStudentById = async (req: Request, res: Response) => {
 export const getCoursesByStudentId = async (req: Request, res: Response) => {
     let id = req.params.id;
     let students: any[] = [];
+    let courses: string[] =[];
 
     let table = "course_enrollments";
 
     const dbResult = await pool.query(`SELECT * FROM ${table} WHERE student_id=${id}`);
 
     students = dbResult.rows;
-    return res.status(200).json(students[0]);
+    for(let s of students){
+        courses.push(s.course_id);
+    }
+    return res.status(200).json(courses);
 
 }
